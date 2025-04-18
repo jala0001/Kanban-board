@@ -2,10 +2,10 @@
 import { VDialog, VCard, VCardTitle, VCardText, VCardActions, VSpacer, VBtn } from 'vuetify/components'
 import CardForm from './CardForm.vue'
 
-/* props */
+
 const props = defineProps<{
   card: { id:string; title:string; description:string }
-  open: boolean                       /* styres af v-model:open */
+  open: boolean                      
 }>()
 
 const emit = defineEmits<{

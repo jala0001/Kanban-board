@@ -1,11 +1,28 @@
 @import './base.css';
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
+
+html {
+  scrollbar-gutter: stable both-edges;
+  
 }
+
+/* i src/assets/main.css */
+body {
+  background-color: #e0f7fa;    /* meget lys blå baggrund */
+}
+
+/* Indpak dit Kanban i en wrapper (f.eks. #app), så du kan style den separat */
+#app {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+
+
 
 a,
 .green {

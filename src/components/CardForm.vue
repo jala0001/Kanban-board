@@ -9,16 +9,16 @@ import {
   VCardActions
 } from 'vuetify/components'
 
-/* 1️⃣  Valgfri startdata (bruges ved redigér) */
+
 const props = defineProps<{
   initialData?: { title: string; description: string }
 }>()
 
-/* 2️⃣  Reactive felter – forudfyldt hvis der er initialData */
+
 const title = ref(props.initialData?.title ?? '')
 const description = ref(props.initialData?.description ?? '')
 
-/* 3️⃣  Emit 'submit' til parent */
+
 const emit = defineEmits<{
   (e: 'submit', p: { title: string; description: string }): void
 }>()

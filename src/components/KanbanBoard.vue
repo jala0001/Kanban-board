@@ -3,7 +3,7 @@ import { reactive } from 'vue'
 import { VContainer, VRow, VCol } from 'vuetify/components'
 import KanbanColumn from './KanbanColumn.vue'
 
-/* ------------ typer ------------ */
+
 interface Card {
   id: string
   title: string
@@ -11,14 +11,14 @@ interface Card {
   status: 'todo' | 'in-progress' | 'done'
 }
 
-/* ------------ central state pr. kolonne ------------- */
+
 const columns = reactive({
   todo:       [] as Card[],
   inProgress: [] as Card[],
   done:       [] as Card[]
 })
 
-/* ------------ modtag nyt kort fra en kolonne -------- */
+
 function addCard (payload: { title: string; description: string; status: string }) {
   const newCard: Card = {
     id: crypto.randomUUID(),
@@ -26,7 +26,6 @@ function addCard (payload: { title: string; description: string; status: string 
     description: payload.description,
     status: payload.status as Card['status']
   }
-
   if (payload.status === 'todo') {
     columns.todo.push(newCard)
   } else if (payload.status === 'in-progress') {
@@ -38,10 +37,26 @@ function addCard (payload: { title: string; description: string; status: string 
 </script>
 
 <template>
-  <!-- vandret scroll hvis der ikke er plads -->
-  <v-container fluid class="pa-4" style="overflow-x:auto;">
-    <v-row class="flex-nowrap" align="stretch">
-      <v-col cols="auto" class="d-flex justify-center">
+  <!-- Hvid “canvas” med max‑bredde og centreret margin -->
+  <v-container
+    fluid
+    class="pa-6"
+    style="
+      background: white;
+      max-width: 1200px;
+      margin: 2rem auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      overflow-x: auto;
+    "
+  >
+    <!-- Flex‑row med justify‑center og jævn gap -->
+    <v-row
+      class="flex-nowrap justify-center"
+      align="stretch"
+      style="gap: 1.5rem;"
+    >
+      <v-col cols="auto">
         <KanbanColumn
           title="To Do"
           status="todo"
@@ -50,7 +65,7 @@ function addCard (payload: { title: string; description: string; status: string 
         />
       </v-col>
 
-      <v-col cols="auto" class="d-flex justify-center">
+      <v-col cols="auto">
         <KanbanColumn
           title="In Progress"
           status="in-progress"
@@ -59,7 +74,7 @@ function addCard (payload: { title: string; description: string; status: string 
         />
       </v-col>
 
-      <v-col cols="auto" class="d-flex justify-center">
+      <v-col cols="auto">
         <KanbanColumn
           title="Done"
           status="done"
